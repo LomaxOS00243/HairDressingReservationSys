@@ -4,14 +4,14 @@ const homelist = function(req, res){
     res.render('index', { title: 'Home' });
     };
     /* GET 'Location info' page */
-    const locationInfo = function(req, res){
+const locationInfo = function(req, res){
     res.render('index', { title: 'Location info' });
-    };
+};
     /* GET 'Add review' page */
-    const addReview = function(req, res){
+const addReview = function(req, res){
     res.render('index', { title: 'Add review' });
     };
-    module.exports = {
+module.exports = {
     homelist,
     locationInfo,
     addReview
