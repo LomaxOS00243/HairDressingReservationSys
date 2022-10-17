@@ -3,9 +3,9 @@
 const homelist = function(req, res){
     res.render('location-list', { title: 'Home' });
     };
-    /* GET 'Location info' page */
-const locationInfo = function(req, res){
-    res.render('index', { title: 'Location info' });
+    /* GET 'Login form' page */
+const loginForm = function(req, res){
+    res.render('login', { title: 'Login' });
 };
     /* GET 'Add review' page */
 const addReview = function(req, res){
@@ -13,7 +13,7 @@ const addReview = function(req, res){
     };
 module.exports = {
     homelist,
-    locationInfo,
+    loginForm,
     addReview
     };
     

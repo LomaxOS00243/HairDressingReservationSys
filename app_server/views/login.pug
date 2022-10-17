@@ -1,0 +1,30 @@
+extends layout 
+block content
+  .container
+    center
+      .middle
+        #login
+          form(action='javascript:void(0);', method='get')
+            fieldset.clearfix
+              p
+                span.fa.fa-user
+                input(type='text', placeholder='Username', required='')
+              // JS because of IE support; better: placeholder="Username"
+              p
+                span.fa.fa-lock
+                input(type='password', placeholder='Password', required='')
+              // JS because of IE support; better: placeholder="Password"
+              div
+                span(style='width:48%; text-align:left;  display: inline-block;')
+                  a.small-text(href='#')
+                    | Forgot
+                    | password?
+                span(style='width:50%; text-align:right;  display: inline-block;')
+                  input(type='submit', value='Sign In')
+            .clearfix
+          .clearfix
+        // end login
+        .col-12.col-md-6.aside_logo
+          img(src='./images/sharpCutAppLogo.png')
+          h1.logo_title 
+            strong SharpCutApp.
