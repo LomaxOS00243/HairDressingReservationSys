@@ -1,7 +1,7 @@
 
 /* GET 'home' page */
 const homelist = function(req, res){
-    res.render('index', { title: 'Home' });
+    res.render('location-list', { title: 'Home' });
     };
     /* GET 'Location info' page */
 const locationInfo = function(req, res){
