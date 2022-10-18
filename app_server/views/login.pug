@@ -1,30 +1,32 @@
 extends layout 
 block content
-  .container
-    center
-      .middle
-        #login
-          form(action='javascript:void(0);', method='get')
+  .row.banner
+      .col-12
+        h1 SharpCutApp
+          small &nbsp; Login to your account to continue your booking
+  .row
+
+    .col-12.col-md-6
+      .card-form
+        .col
+          h1 Login
+          form(action='#', method='get')
             fieldset.clearfix
-              p
+              p.row
                 span.fa.fa-user
-                input(type='text', placeholder='Username', required='')
-              // JS because of IE support; better: placeholder="Username"
-              p
+                input(type='text', class="form-control input-lg" placeholder='Email', required='')
+              p.row
                 span.fa.fa-lock
-                input(type='password', placeholder='Password', required='')
-              // JS because of IE support; better: placeholder="Password"
-              div
-                span(style='width:48%; text-align:left;  display: inline-block;')
-                  a.small-text(href='#')
-                    | Forgot
-                    | password?
-                span(style='width:50%; text-align:right;  display: inline-block;')
+                input(type='password', class="form-control input-lg" placeholder='Password', required='')
+              span
+                a.small-text(href='#')
+                  | Forgot
+                  | password?
+              span
                   input(type='submit', value='Sign In')
-            .clearfix
-          .clearfix
-        // end login
-        .col-12.col-md-6.aside_logo
-          img(src='./images/sharpCutAppLogo.png')
-          h1.logo_title 
-            strong SharpCutApp.
+               
+            // end login
+    .col-12.col-md-6.aside_logo
+        img(src='./images/sharpCutAppLogo.png')
+        h1.logo_title 
+          strong SharpCutApp.

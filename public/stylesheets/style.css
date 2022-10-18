@@ -56,7 +56,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 small {
-  color: #aaa;
+  color: rgb(46, 45, 45);
 }
 
 .card {
@@ -140,6 +140,67 @@ legend {
   margin-left: auto;
   margin-top: -1.8em;
 }
+/* style login page*/
+.card-form{
+  background-color: #75969a;
+  margin-top: 5em;
+  margin-bottom: 8em;
+  width: 80%;
+  height: 100%;
+  padding-bottom: 4em;
+}
+.card-form h1{
+  text-align: center;
+  padding-top: 1em;
+  margin-bottom: -20px;
+}
+.card-form form{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
+}
+.card-form form fieldset{
+  padding-top: 80px;
+  position: relative;
+  margin:auto;
+  width: 90%;
+}
+.card-form form fieldset .fa{
+  position: relative;
+  top: 25px;
+  left: 25px;
+  color: #14515a;
+}
+
+input {
+	border: none;
+  margin-top: 30px;
+  margin: auto;
+	font-family: 'Open Sans', Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.5em;
+	padding: 0;
+}
+input[type="text"], input[type="password"], input[type="email"] {
+  background: #ebebeb;
+  border-radius: 3px;
+  color: #5a5656;
+  padding: 10px 15px;
+  width: 80%;
+}
+input[type="submit"] {
+  background: #ad1d28;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  left:9em;
+  position: relative;
+  font-weight: bold;
+  margin-top: 20px;
+  padding: 10px 15px;
+  width: 30%;
+}
 footer{
   background-color: #c9e8f5;
   margin-top: 2em;
@@ -161,6 +222,9 @@ footer{
   /* For mobile phones: */
   body{
     font-size: 14px;
+  }
+ .banner{
+    padding: 10px;
   }
   [class*="navbar-collapse"] {
     left: 20rem;
@@ -215,5 +279,13 @@ footer{
     width: 100%;
     height: auto;
   }
-  
+  .card-form{
+    width: 100%;
+    height: 100%;
+    padding-bottom: 70px;
+  }
+  input[type="submit"] {
+    
+    width: 27%;
+  }
 }
