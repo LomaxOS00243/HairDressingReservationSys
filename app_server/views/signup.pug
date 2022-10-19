@@ -12,11 +12,15 @@ block content
                     form(action='#', method='get')
                         fieldset.clearfix
                             p  
-                                input(type='text', class="form-control input-lg" placeholder='First Name', required='')   
+                                input(type='text', class="form-control input-lg" placeholder='Full Name', required='')   
                             p  
-                                input(type='text', class="form-control input-lg" placeholder='Last Name', required='')   
+                                input(type='number', class="form-control input-lg" placeholder='Adult Price', required='' max='100' min='5')
                             p  
-                                input(type='text', class="form-control input-lg" placeholder='City', required='')      
+                                input(type='number', class="form-control input-lg" placeholder='Children Price', required='' max='100' min='5')  
+                            p  
+                                input(type='text', class="form-control input-lg" placeholder='Address', required='')  
+                            p  
+                                input(type='text', class="form-control input-lg" placeholder='City', required='')    
                             p
                                 input(type='email', class="form-control input-lg" placeholder='Email', required='')
                             p  
@@ -27,6 +31,6 @@ block content
                                 input(type='submit', value='Sign Up')
                     
         .col-12.col-md-6.aside_logo
-            img(src='./images/sharpCutAppLogo.png')
+            img(src='/images/sharpCutAppLogo.png')
             h1.logo_title 
                 strong SharpCutApp.
