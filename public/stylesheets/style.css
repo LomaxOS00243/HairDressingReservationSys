@@ -205,6 +205,14 @@ input[type="submit"] {
   padding: 10px 15px;
   width: 30%;
 }
+.card-form .signupForm fieldset input[type="submit"]{
+  width: 35%;
+}
+input[type="submit"]:hover {
+  background: #de987e;
+  cursor: pointer;
+  box-shadow: 1px 0px 5px 3px #eaa76a;
+}
 
 footer{
   background-color: #c9e8f5;
