@@ -190,6 +190,9 @@ input[type="text"], input[type="password"], input[type="email"], input[type="num
   padding: 10px 15px;
   width: 80%;
 }
+.card-form .signupForm fieldset input[type="password"]{
+  display:none;
+}
 input[type="submit"] {
   background: #ad1d28;
   border-radius: 3px;
@@ -202,6 +205,7 @@ input[type="submit"] {
   padding: 10px 15px;
   width: 30%;
 }
+
 footer{
   background-color: #c9e8f5;
   margin-top: 2em;
@@ -279,6 +283,14 @@ footer{
     position: relative;
     width: 100%;
     height: auto;
+    padding-bottom: 10px;
+    
+  }
+  .status p{
+    position: absolute;
+    right: 0px;
+    top: 5px;
+    
   }
   .card-form{
     width: 100%;

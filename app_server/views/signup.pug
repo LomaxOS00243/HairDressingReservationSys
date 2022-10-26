@@ -3,30 +3,30 @@ block content
     .row.banner
         .col-12
             h1 SharpCutApp
-                small &nbsp; Register your account to be able to book your appointment
+                small &nbsp; Create an account to get receiveing appointments with awesome customers
     .row
         .col-12.col-md-6
             .card-form
                 .col
                     h1 Sign Up
-                    form(action='#', method='get')
+                    form(action='#', method='get' class='signupForm')
                         fieldset.clearfix
                             p  
-                                input(type='text', class="form-control input-lg" placeholder='Full Name', required='')   
-                            p  
-                                input(type='number', class="form-control input-lg" placeholder='Adult Price', required='' max='100' min='5')
-                            p  
-                                input(type='number', class="form-control input-lg" placeholder='Children Price', required='' max='100' min='5')  
+                                input(type='text', class="form-control input-lg" placeholder='Full Name', required='')     
                             p  
                                 input(type='text', class="form-control input-lg" placeholder='Address', required='')  
                             p  
-                                input(type='text', class="form-control input-lg" placeholder='City', required='')    
+                                input(type='text', class="form-control input-lg" placeholder='City', required='') 
+                            p  
+                                input(type='number', class="form-control input-lg" placeholder='Adult Price', required='' max='100' min='5')
+                            p  
+                                input(type='number', class="form-control input-lg" placeholder='Children Price', required='' max='10' min='5')   
                             p
                                 input(type='email', class="form-control input-lg" placeholder='Email', required='')
+                            p
+                                input(type='telephone', class="form-control input-lg" placeholder='phone Number', required='')
                             p  
-                                input(type='password', class="form-control input-lg" placeholder='Password', required='')
-                            p  
-                                input(type='password', class="form-control input-lg"  placeholder='Confirm Password', required='')
+                                input(type='password', class="form-control input-lg"  placeholder='Password' readonly)
                             span
                                 input(type='submit', value='Sign Up')
                     
