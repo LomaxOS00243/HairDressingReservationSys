@@ -2,8 +2,8 @@ extends layout
 block content
     .row.banner
         .col-12
-            h1 SharpCutApp
-                small &nbsp; Create an account to get receiveing appointments with awesome customers
+            h1 #{pageHeader.title}
+                small &nbsp; #{pageHeader.strapline}
     .row
         .col-12.col-md-6
             .card-form
@@ -24,7 +24,7 @@ block content
                             p
                                 input(type='email', class="form-control input-lg" placeholder='Email', required='')
                             p
-                                input(type='telephone', class="form-control input-lg" placeholder='phone Number', required='')
+                                input(type='tel', class="form-control input-lg" placeholder='phone Number', required='')
                             p  
                                 input(type='password', class="form-control input-lg"  placeholder='Password' readonly)
                             span

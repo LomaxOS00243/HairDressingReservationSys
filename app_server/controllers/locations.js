@@ -45,12 +45,20 @@ const homelist = function(req, res){
 
     /* GET 'Signup form' page */
 const signupForm = function(req, res){
-    res.render('signup', { title: 'Sign Up' });
+    res.render('signup', { 
+        pageHeader: {
+            title: 'Sign Up',
+            strapline: 'Create an account to receive appointments from awesome customers.'},
+     });
 };
 
     /* GET 'Login form' page */
 const loginForm = function(req, res){
-    res.render('login', { title: 'Login' });
+    res.render('login', { 
+        pageHeader: {
+            title: 'Login',
+            strapline: 'Login to your account for your appointments.'},
+     });
 };
     /* GET 'Add review' page */
 const addReview = function(req, res){
