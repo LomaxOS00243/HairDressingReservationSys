@@ -1,0 +1,32 @@
+extends layout 
+block content
+  .row.banner
+      .col-12
+        h1 SharpCutApp
+          small &nbsp; Login to your account to continue your booking
+  .row
+
+    .col-12.col-md-6
+      .card-form
+        .col
+          h1 Login
+          form(action='#', method='get')
+            fieldset.clearfix
+              p.row
+                span.fa.fa-user
+                input(type='text', class="form-control input-lg" placeholder='Email', required='')
+              p.row
+                span.fa.fa-lock
+                input(type='password', class="form-control input-lg" placeholder='Password', required='')
+              span
+                a.small-text(href='#')
+                  | Forgot
+                  | password?
+              span
+                  input(type='submit', value='Sign In')
+               
+            // end login
+    .col-12.col-md-6.aside_logo
+        img(src='/images/sharpCutAppLogo.png')
+        h1.logo_title 
+          strong SharpCutApp.
