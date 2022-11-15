@@ -2,119 +2,45 @@ extends layout
 block content
   .row.banner
     .col-12
-      h1 SharpCutApp
-        small &nbsp; Find the best barber near your area!
+      h1=pageHeader.title
+        small &nbsp; #{pageHeader.strapline}
   .row
     .col-12.col-md-6
-
-      .card
-        .card-block
-          h3
-            .barber_name.col-md-7
-              a(href="/location") Lomax the Sharper     
-            .empty-div.col-md-2      
-            .rating_barber.col-md-3
-              small &nbsp;
-                i.fa.fa-star
-                i.fa.fa-star
-                i.fa.fa-star
-                i.fa.fa-star-o
-                i.fa.fa-star-o
-              //span.badge.badge-pill.badge-default.float-right 100m
-          p.adult_price Adult price: €50.00
-          p.children_price Children price: €30.00
-          .barber_address.col-md-12
-            p.address.col-md-8 125 High Street, Reading, RG6 1PS
-            .empty-div.col-md-2
-            span.badge.badge-pill.badge-default.float-right.col-md-2 100m
-          p.phone_number 0118 123 4567
-          .facilities.col-md-12
-            .badges.col-md-4
-              span.badge.badge-warning Clean fade
-            .badges.col-md-4
-              span.badge.badge-warning Beard
-            .badges.col-md-4
-              span.badge.badge-warning Hot towel
-          .status.col-md-12            
-            .empty-div.col-md-7
-            .availability.col-md-3
-              p availability:
-            span.badge-avalability.col-md-2
-              p Yes
-
-      .card
-        .card-block
-          h3
-            .barber_name.col-md-7
-              a(href="/location") Yuzu Tayishi  
-            .empty-div-first.col-md-2      
-            .rating_barber.col-md-3
-              small &nbsp;
-                i.fa.fa-star
-                i.fa.fa-star
-                i.fa.fa-star-o
-                i.fa.fa-star-o
-                i.fa.fa-star-o
-              //span.badge.badge-pill.badge-default.float-right 200m
-          p.adult_price Adult price: €50.00
-          p.children_price Children price: €30.00
-          .barber_address.col-md-12
-            p.address.col-md-8 125 High Street, Reading, RG6 1PS
-            .empty-div.col-md-2
-            span.badge.badge-pill.badge-default.float-right.col-md-2 300m
-          p.phone_number 0118 123 4567
-          
-          .facilities.col-md-12
-            .badges.col-md-4
-              span.badge.badge-warning Clean fade
-            .badges.col-md-4
-              span.badge.badge-warning Beard
-            .badges.col-md-4
-              span.badge.badge-warning Hot towel
-          .status.col-md-12            
-            .empty-div.col-md-7
-            .availability.col-md-3
-              p availability:
-            span.badge-avalability.col-md-2
-              p Yes 
+      each loc in locations
+        .card
+          .card-block
+            h3
+              .barber_name.col-md-7
+                a(href="/location") #{loc.name}  
+              .empty-div.col-md-2      
+              .rating_barber.col-md-3
+                small &nbsp;
+                  i.fa.fa-star
+                  i.fa.fa-star
+                  i.fa.fa-star
+                  i.fa.fa-star-o
+                  i.fa.fa-star-o
+            p.adult_price Adult price: #{loc.adultPrice}
+            p.children_price Children price: #{loc.childrenPrice}
+            .barber_address.col-md-12
+              p.address.col-md-8 #{loc.address}
+              .empty-div.col-md-2
+              span.badge.badge-pill.badge-default.float-right.col-md-2 #{loc.distance}
+            p.phone_number  #{loc.phoneNumber}
+            .facilities.col-md-12
+              each service in loc.services ? loc.services : []
+                .badges.col-md-4
+                  span.badge.badge-warning #{service}
               
-            
+            .status.col-md-12            
+              .empty-div.col-md-7
+              .availability.col-md-3
+                p availability:
+              span.badge-avalability.col-md-2
+                p #{loc.status}
 
-      .card
-        .card-block
-          h3
-            .barber_name.col-md-7
-              a(href="/location") Larissa Queen          
-            .empty-div.col-md-2      
-            .rating_barber.col-md-3
-              small &nbsp;
-                i.fa.fa-star
-                i.fa.fa-star
-                i.fa.fa-star
-                i.fa.fa-star
-                i.fa.fa-star
-              //span.badge.badge-pill.badge-default.float-right 500m
-          p.adult_price Adult price: €50.00
-          p.children_price Children price: €30.00
-          .barber_address.col-md-12
-            p.address.col-md-8 125 High Street, Reading, RG6 1PS
-            .empty-div.col-md-2
-            span.badge.badge-pill.badge-default.float-right.col-md-2 500m 
-          p.phone_number 0118 123 4567
-
-          .facilities.col-md-12
-            .badges.col-md-4
-              span.badge.badge-warning Clean fade
-            .badges.col-md-4
-              span.badge.badge-warning Beard
-            .badges.col-md-4
-              span.badge.badge-warning Hot towel
-          .status.col-md-12            
-            .empty-div.col-md-7
-            .availability.col-md-3
-              p availability:
-            span.badge-avalability.col-md-2
-              p No
+       
+          
 
     .col-12.col-md-6.aside_logo
       img(src='./images/sharpCutAppLogo.png')

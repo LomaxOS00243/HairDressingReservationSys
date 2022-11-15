@@ -2,15 +2,15 @@ extends layout
 block content
   .row.banner
       .col-12
-        h1 SharpCutApp
-          small &nbsp; Login to your account to continue your booking
+        h1 #{pageHeader.title}
+          small &nbsp; #{pageHeader.strapline}
   .row
 
     .col-12.col-md-6
       .card-form
         .col
           h1 Login
-          form(action='#', method='get')
+          form(action='#', method='get' class='loginForm')
             fieldset.clearfix
               p.row
                 span.fa.fa-user
