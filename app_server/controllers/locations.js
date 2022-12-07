@@ -1,47 +1,71 @@
 
-/* GET 'home' page */
-const homelist = function(req, res){
+
+//https://localservices01.herokuapp.com/
+//create a call of api with request module
+//request module is a module that allows us to make http calls
+const request = require('request');
+//create a function that will be called when the user clicks on the button
+//this function will make a call to the api
+const apiOptions = {
+    server: 'http://localhost:3000'
+};
+if (process.env.NODE_ENV === 'production') {
+    apiOptions.server = 'https://localservices01.herokuapp.com/';
+}
+
+const _formatDistance = function (distance) {
+    let thisDistance = 0;
+    let unit = 'm';
+    if (distance > 1000) {
+        thisDistance = parseFloat(distance / 1000).toFixed(1);
+        unit = 'km';
+    } else {
+        thisDistance = Math.floor(distance);
+    }
+    return thisDistance + unit;
+};
+
+const renderHomepage = (req, res, responseBody) => {
+    let message = null;
+    if (!(responseBody instanceof Array)) {
+        message = "API lookup error";
+        responseBody = [];
+    } else {
+        if (!responseBody.length) {
+            message = "No places found nearby";
+        }
+    }
     res.render('location-list', { 
         title: 'Home',
         pageHeader: {
             title: 'SharpCutApp',
             strapline: 'Find the best barber near your area!'},
-        locations: [{
-                name: 'Lomax theSharper',
-                rating: 3,
-                adultPrice: 50.00,
-                childrenPrice: 30.00,
-                address: '125 High Street, Reading, RG6 1PS',
-                distance: '200m',
-                phoneNumber: '089 123 4567',
-                services: ['Haircut', 'Shave', 'Beard Trim'],
-                status: 'No'
-            },
-            {
-                name: 'Yuzu Tayishi',
-                rating: 4,
-                adultPrice: 50.00,
-                childrenPrice: 30.00,
-                address: '125 High Street, Reading, RG6 1PS',
-                distance: '100m',
-                phoneNumber: '089 123 4567',
-                services: ['Haircut', 'Shave', 'Beard Trim'],
-                status: 'Yes'
-            },
-            {
-                name: 'Larissa Queen',
-                rating: 5,
-                adultPrice: 40.00,
-                childrenPrice: 20.00,
-                address: '21 Princess Street, Tralee, RG6 1PS',
-                distance: '500m',
-                phoneNumber: '089 123 4567',
-                services: ['Haircut', 'Shave', 'Beard Trim'],
-                status: 'No'
-            
-        }]
+        locations: responseBody,
         });
+};
+
+
+/* GET 'home' page */
+const homelist = function(req, res){
+    const path = '/api/locations';
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,
+        method: 'GET',
+        json: {},
+        qs: {
+            lng: -0.9690884,
+            lat: 51.455041,
+            maxDistance: 20
+        }
     };
+    request(
+        requestOptions,
+        (err, response, body) => {
+
+        renderHomepage(req, res, body);
+        }
+    );
+};
 
     /* GET 'Signup form' page */
 const signupForm = function(req, res){

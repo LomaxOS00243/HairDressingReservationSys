@@ -4,24 +4,25 @@ const ctrlLocations = require('../controllers/locations');
 const ctrlReviews = require('../controllers/reviews');
 
 // locations
-router
-  .route('/locations')
-  .get(ctrlLocations.locationsListByDistance)
-  .post(ctrlLocations.locationsCreate);
 
 router
-  .route('/locations/:locationid')
-  .get(ctrlLocations.locationsReadOne)
-  .put(ctrlLocations.locationsUpdateOne)
-  .delete(ctrlLocations.locationsDeleteOne);
+  .route('/locations')
+  .get(ctrlLocations.barberListByDistance)
+  .post(ctrlLocations.barberDetailsCreate);
+
+router
+  .route('/locations/:userid')
+  .get(ctrlLocations.barberDetailsReadOne)
+  .put(ctrlLocations.barberDetailsUpdateOne)
+  .delete(ctrlLocations.barberDeleteOne);
   
 // reviews
 router
-  .route('/locations/:locationid/reviews')
+  .route('/locations/:userid/reviews')
   .post(ctrlReviews.reviewsCreate);
 
 router
-  .route('/locations/:locationid/reviews/:reviewid')
+  .route('/locations/:userid/reviews/:reviewid')
   .get(ctrlReviews.reviewsReadOne)
   .put(ctrlReviews.reviewsUpdateOne)
   .delete(ctrlReviews.reviewsDeleteOne);

@@ -1,0 +1,103 @@
+// MongoDB Playground
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+
+const database = 'sharpcut';
+use(database);
+
+//delete one from barbers collection
+db.barbers.deleteOne({_id: ObjectId("638e6b29073ae4fa59ba0ceb")});
+
+//create db insertone for price
+/*db.prices.insertOne({
+  "adult": 40,
+  "child":30,
+});
+db.reviews.insertOne({
+  "name": "John Doe",
+  "review": "Great service",
+  "rating": 5,
+  "date": "2022-12-05"
+});
+//create db insertone for opening and closing hours
+db.shifts.insertOne({
+  "days": "Monday - Friday",
+  "opening": "9:00am",
+  "closing": "5:00pm",
+  "closed": false,
+});*/
+
+
+
+//find all documents in the collection
+//db.barbers.find().pretty();
+
+db.barbers.insertOne({
+  name: "Yuzu Tayishi",
+  address: "125 High Street, Reading 01234",
+  city: "London",
+  rating: 4,
+  email: "Lomaxos6@gmail.com",
+  password: "password",
+  phone: "212-555-1212",
+  services: ["Haircut", "Shave", "Beard Trim"],
+  price: [40, 30],
+  coords: {lat: 51.4567, lng: -0.1234},
+  openingTimes: [{
+    days: "Monday - Friday",
+    opening: "9:00am",
+    closing: "5:00pm",
+    closed: false,
+  },
+  {
+    days: "Saturday",
+    opening: "9:00am",
+    closing: "1:00pm",
+    closed: false,
+  },
+  {
+    days: "Sunday",
+    closed: true,
+  }],
+  
+  reviews: [{
+    name: "John Doe",
+    review: "Great service",
+    rating: 5,
+    date: "2022-12-05"
+  }],
+  available: true,
+  
+});
+
+// Create a new collection.
+//db.createCollection(collection);
+
+
+// The prototype form to create a collection:
+/* db.createCollection( <name>,
+  {
+    capped: <boolean>,
+    autoIndexId: <boolean>,
+    size: <number>,
+    max: <number>,
+    storageEngine: <document>,
+    validator: <document>,
+    validationLevel: <string>,
+    validationAction: <string>,
+    indexOptionDefaults: <document>,
+    viewOn: <string>,
+    pipeline: <pipeline>,
+    collation: <document>,
+    writeConcern: <document>,
+    timeseries: { // Added in MongoDB 5.0
+      timeField: <string>, // required for time series collections
+      metaField: <string>,
+      granularity: <string>
+    },
+    expireAfterSeconds: <number>,
+    clusteredIndex: <document>, // Added in MongoDB 5.3
+  }
+)*/
+
+// More information on the `createCollection` command can be found at:
+// https://www.mongodb.com/docs/manual/reference/method/db.createCollection/
