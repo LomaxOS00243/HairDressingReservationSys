@@ -1,30 +1,42 @@
 
 
-//https://localservices01.herokuapp.com/
-//create a call of api with request module
-//request module is a module that allows us to make http calls
 const request = require('request');
-//create a function that will be called when the user clicks on the button
-//this function will make a call to the api
+
 const apiOptions = {
     server: 'http://localhost:3000'
 };
 if (process.env.NODE_ENV === 'production') {
-    apiOptions.server = 'https://localservices01.herokuapp.com/';
+    apiOptions.server = 'still-woodland-90107.herokuapp.com/';
 }
 
-const _formatDistance = function (distance) {
-    let thisDistance = 0;
-    let unit = 'm';
-    if (distance > 1000) {
-        thisDistance = parseFloat(distance / 1000).toFixed(1);
-        unit = 'km';
-    } else {
-        thisDistance = Math.floor(distance);
-    }
-    return thisDistance + unit;
-};
 
+/* GET 'home' page */
+const homelist = (req, res) => {
+    const path = '/api/locations';
+    const requestOptions = {
+        url : apiOptions.server + path,
+        method : 'GET',
+        json : {},
+        qs : {
+            lng : -0.7992599,
+            lat : 51.378091,
+            maxDistance : 20
+        }
+    };
+    request(
+        requestOptions,
+        (err, response, body) => {
+            let data = body;
+            if (response.statusCode === 200 && data.length) {
+                for (let i = 0; i < data.length; i++) {
+                    data[i].distance = _formatDistance(data[i].distance);
+                }
+            }
+
+        renderHomepage(req, res, data);
+        }
+    );
+};
 const renderHomepage = (req, res, responseBody) => {
     let message = null;
     if (!(responseBody instanceof Array)) {
@@ -32,40 +44,37 @@ const renderHomepage = (req, res, responseBody) => {
         responseBody = [];
     } else {
         if (!responseBody.length) {
-            message = "No places found nearby";
+            message = "No barbers found nearby";
         }
     }
+    
     res.render('location-list', { 
         title: 'Home',
         pageHeader: {
             title: 'SharpCutApp',
-            strapline: 'Find the best barber near your area!'},
-        locations: responseBody,
+            strapline: 'Find the best barber near your area!'
+        },
+        
+        barbers: responseBody,
+        message: message
         });
+        
 };
-
-
-/* GET 'home' page */
-const homelist = function(req, res){
-    const path = '/api/locations';
-    const requestOptions = {
-        url: `${apiOptions.server}${path}`,
-        method: 'GET',
-        json: {},
-        qs: {
-            lng: -0.9690884,
-            lat: 51.455041,
-            maxDistance: 20
-        }
-    };
-    request(
-        requestOptions,
-        (err, response, body) => {
-
-        renderHomepage(req, res, body);
-        }
-    );
-};
+const _formatDistance = function (distance) {
+    if (distance && _isNumeric(distance)) {
+      let thisDistance = 0;
+      let unit = 'm';
+      if (distance > 1000) {
+        thisDistance = parseFloat(distance / 1000).toFixed(1);
+        unit = 'km';
+      } else {
+        thisDistance = Math.floor(distance);
+      }
+      return thisDistance + unit;
+    } else {
+      return '0m';
+    }
+  };
 
     /* GET 'Signup form' page */
 const signupForm = function(req, res){

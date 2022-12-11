@@ -7,7 +7,7 @@ const ctrlReviews = require('../controllers/reviews');
 
 router
   .route('/locations')
-  .get(ctrlLocations.barberListByDistance)
+  .get(ctrlLocations.barberReadAll)
   .post(ctrlLocations.barberDetailsCreate);
 
 router
