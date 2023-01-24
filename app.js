@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const cors = require('cors');
 require('./app_api/models/db');
 
 const routes = require('./app_server/routes/index');
@@ -15,6 +16,12 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
 app.set('view engine', 'pug');
+
+app.use(cors({
+  origin: ['https://killarneylabs.netlify.app', 'http://example2.com'],
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 app.use(logger('dev'));
 app.use(express.json());
