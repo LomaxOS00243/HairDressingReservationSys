@@ -17,6 +17,11 @@ const app = express();
 app.set('views', path.join(__dirname, 'app_server', 'views'));
 app.set('view engine', 'pug');
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 app.use(cors({
   origin: ['https://killarneylabs.netlify.app', 'http://example2.com'],
   methods: ['GET', 'POST'],
