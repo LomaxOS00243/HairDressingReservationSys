@@ -1,6 +1,26 @@
 const mongoose = require('mongoose');
 const Loc = mongoose.model('Barber');
 
+const _buildLocationList = function(req, res, results, stats) {
+  let barbers = [];
+  results.forEach((doc) => {
+    barbers.push({
+
+      name: doc.obj.name,
+      rating: doc.obj.rating,
+      price: doc.obj.price,
+      address: doc.obj.address,
+      city: doc.obj.city,
+      distance: doc.dis,
+      phoneNumber: doc.obj.phoneNumber,
+      services: doc.obj.services,
+      available: doc.obj.available,
+      _id: doc.obj._id
+    });
+  });
+  return barbers;
+};
+
 const barberDetailsCreate = function (req, res) {
     Loc.create({
         name: req.body.name,
@@ -18,15 +38,6 @@ const barberDetailsCreate = function (req, res) {
           parseFloat(req.body.lng), 
           parseFloat(req.body.lat)
         ],
-        openingTimes: [{
-            days: req.body.days1,
-            opening: req.body.opening1,
-            closing: req.body.closing1,
-            closed: req.body.closed1,
-        }, {
-            days: req.body.days2,
-            closed: req.body.closed2,
-        }],
         /*reviews: [{ 
           author: req.body.author, 
           rating: req.body.rating, 
@@ -47,53 +58,35 @@ const barberDetailsCreate = function (req, res) {
     });
  };
 const barberListByDistance = function (req, res) { 
-    const lng = parseFloat(req.query.lng);
-    const lat = parseFloat(req.query.lat);
-    const near = {
-      type: "Point",
-      coordinates: [lng, lat]
-    };
-    const geoOptions = {
-      distanceField: "distance.calculated",
-      key: 'coords',
-      spherical: true,
-      maxDistance: 20000,
-      limit: 10
-    };
-    if (!lng || !lat) {
-      return res
-        .status(404)
-        .json({
-        "message": "lng and lat query parameters are required"
-      });
-    }
-    try {
-      const results = Loc.aggregate([
-        {
-          $geoNear: {
-            near,
-            ...geoOptions
-          }
-        }
-      ]);
-      const users = results.map(result => {
-        return {
-          id: result._id,
-          name: result.name,
-          address: result.address,
-          rating: result.rating,
-          facilities: result.facilities,
-          distance: `${result.distance.calculated.toFixed()}m`
-        }
-      });
-      res
-      .status(200)
-      .json(users);
-  }catch (err) {
+  const lng = parseFloat(req.query.lng);
+  const lat = parseFloat(req.query.lat);
+  const maxDistance = parseFloat(req.query.maxDistance);
+  const point = {
+    type: "Point",
+    coordinates: [lng, lat]
+  };
+  const geoOptions = {
+    spherical: true,
+    maxDistance: 20000,
+    num: 10
+  };
+  if ((!lng && lng !==0 ) || (!lat && lat !== 0) || !maxDistance) {
+    console.log('locationsListByDistance missing params');
     res
       .status(404)
-      .json(err);
+      .json({
+        message : 'lng, lat and maxDistance query parameters are all required'
+      });
+    return;
   }
+  Loc.geoNear(point, geoOptions, (err, results, stats) => {
+    const barbers = _buildLocationList(req, res, results, stats);
+    console.log('Geo Results', results);
+    console.log('Geo stats', stats);
+    res
+      .status(200)
+      .json(barbers);
+  });
 };
 const barberDetailsReadOne = function (req, res) { 
   if(req.params && req.params.userid) {
@@ -134,11 +127,33 @@ const barberDeleteOne = function (req, res) {
         .status(200)
         .json({"status" : "success"});
 };
+const barberReadAll = function (req, res) {
+  Loc
+    .find()
+    .exec((err, barbers) => {
+      if (!barbers) {
+        return res
+          .status(404)
+          .json({
+            "message": "barbers not found"
+          });
+      }else if (err) {
+        return res
+          .status(404)
+          .json(err);
+      }
+      res
+        .status(200)
+        .json(barbers);
+    });
+};
+
 
 module.exports = {
   barberListByDistance,
   barberDetailsCreate,
   barberDetailsReadOne,
   barberDetailsUpdateOne,
-  barberDeleteOne
+  barberDeleteOne,
+  barberReadAll
 };

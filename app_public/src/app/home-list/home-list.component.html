@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="row banner">
+        <div class="col-12">
+            <h1>SharpCutApp<small>&nbsp; Find the best barber near your area!</small><small>&nbsp; </small></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="error">
+
+            </div>
+            <div class="card" *ngFor="let barber of barbers">
+                <div class="card-block">
+                    <h3>
+                        <div class="barber_name col-md-7"><a href="/location/{{barber._id}}">{{barber.name}}  </a></div>
+                        <div class="empty-div col-md-2">     </div>
+                        <div class="rating_barber col-md-3">
+                            <small>
+                                &nbsp;<i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                            </small>
+                        </div>
+                    </h3>
+                    <p class="adult_price">Adult price:{{barber.price[0]}} </p>
+                    <p class="children_price">Children price: {{barber.price[1]}}</p>
+                    <div class="barber_address col-md-12">
+                        <p class="address col-md-8">{{barber.address}} {{barber.city}}</p>
+                        <div class="empty-div col-md-2"></div>
+                        <span class="badge badge-pill badge-default float-right col-md-2">{{barber.distance | distance}}</span>
+                    </div>
+                    <p class="phone_number"> </p>
+                    <div class="facilities col-md-12">
+                        <div class="badges col-md-2">
+                            <span *ngFor="let service of barber.services"  class="badge badge-warning">{{service}}</span>
+                        </div>
+                    </div>
+                    <div class="status col-md-12">           
+                        <div class="empty-div col-md-7"></div>
+                        <div class="availability col-md-3">
+                            <p>availability:</p>
+                        </div>
+                        <span class="badge-avalability col-md-2">
+                            <p>{{barber.available}}</p>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+    <footer>
+        <div class="row">
+            <div class="col-12">
+                <small>© Lomax Os 2022</small>
+            </div>
+        </div>
+    </footer>

@@ -4,14 +4,16 @@ block content
     .col-12
       h1=pageHeader.title
         small &nbsp; #{pageHeader.strapline}
+        small &nbsp; #{message}
   .row
     .col-12.col-md-6
-      each loc in locations
+      .error=message
+      each barber in barbers
         .card
           .card-block
             h3
               .barber_name.col-md-7
-                a(href="/location") #{loc.name}  
+                a(href=`/location/${barber._id}`) #{barber.name}  
               .empty-div.col-md-2      
               .rating_barber.col-md-3
                 small &nbsp;
@@ -20,15 +22,16 @@ block content
                   i.fa.fa-star
                   i.fa.fa-star-o
                   i.fa.fa-star-o
-            p.adult_price Adult price: #{loc.adultPrice}
-            p.children_price Children price: #{loc.childrenPrice}
+                  
+            p.adult_price Adult price: #{barber.price.length > 0 ? barber.price.adult : '00'}
+            p.children_price Children price: #{barber.price.length > 0 ? barber.child : '00'}
             .barber_address.col-md-12
-              p.address.col-md-8 #{loc.address}
+              p.address.col-md-8 #{barber.address} #{barber.city}
               .empty-div.col-md-2
-              span.badge.badge-pill.badge-default.float-right.col-md-2 #{loc.distance}
-            p.phone_number  #{loc.phoneNumber}
+              span.badge.badge-pill.badge-default.float-right.col-md-2 #{barber.distance}
+            p.phone_number  #{barber.phoneNumber}
             .facilities.col-md-12
-              each service in loc.services ? loc.services : []
+              each service in barber.services ? barber.services : []
                 .badges.col-md-4
                   span.badge.badge-warning #{service}
               
@@ -37,7 +40,9 @@ block content
               .availability.col-md-3
                 p availability:
               span.badge-avalability.col-md-2
-                p #{loc.status}
+                  p #{barber.available ? "Yes" : "No"}
+                
+                
 
        
           
