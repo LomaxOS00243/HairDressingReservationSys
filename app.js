@@ -20,7 +20,7 @@ app.set('view engine', 'pug');
 
 
 app.use(cors({
-  origin: ['https://killarneylabs.netlify.app', 'http://example2.com'],
+  origin: ['https://killarneylabs.netlify.app', 'file:///D:/Go/KillarneyLabsWebsite/index.html'],
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
